@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import { gcpConfig, validateGCPConfig } from './gcpConfig.js';
+import { logger } from '../utils/logger.js';
 
 // Cargar variables de entorno
 dotenv.config();
