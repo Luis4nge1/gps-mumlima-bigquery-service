@@ -1,11 +1,9 @@
-import { config } from '../config/env.js';
-
 /**
  * Logger simple y eficiente para el microservicio
  */
 class Logger {
   constructor() {
-    this.level = config.logging.level || 'info';
+    this.level = 'info'; // Default level, will be updated by setLevel()
     this.levels = {
       error: 0,
       warn: 1,
@@ -78,12 +76,24 @@ class Logger {
   }
 
   /**
+   * Inicializa el logger con la configuración
+   */
+  initialize(config) {
+    if (config && config.logging && config.logging.level) {
+      this.setLevel(config.logging.level);
+    }
+  }
+
+  /**
    * Cambia el nivel de logging
    */
   setLevel(level) {
     if (this.levels.hasOwnProperty(level)) {
       this.level = level;
-      this.info(`📝 Nivel de logging cambiado a: ${level}`);
+      // Only log the change if we're not in the initial setup
+      if (this.level !== 'info' || level !== 'info') {
+        this.info(`📝 Nivel de logging cambiado a: ${level}`);
+      }
     } else {
       this.warn(`⚠️ Nivel de logging inválido: ${level}`);
     }

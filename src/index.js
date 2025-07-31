@@ -32,6 +32,9 @@ class GPSBigQueryService {
       // Validar configuración
       validateConfig();
 
+      // Inicializar logger con configuración
+      logger.initialize(config);
+
       // Validar configuración de migración
       try {
         migrationConfig.validateConfig();
