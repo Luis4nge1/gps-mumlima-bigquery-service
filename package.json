@@ -1,0 +1,55 @@
+{
+  "name": "gps-bigquery-microservice",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Microservicio escalable para procesamiento automático de datos GPS con simulación de subida a BigQuery",
+  "main": "src/index.js",
+  "scripts": {
+    "init": "node scripts/init.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "dev:watch": "node --watch src/index.js",
+    "start:once": "node src/index.js --once",
+    "start:production": "NODE_ENV=production node src/index.js",
+    "lint": "echo \"Linting not configured\" && exit 0",
+    "api:test": "node scripts/test-api-v3.js",
+    "api:demo": "node examples/api-v3-usage.js",
+    "api:demo:process": "node examples/api-v3-usage.js --process",
+    "migration:status": "node scripts/migration-manager.js status",
+    "migration:monitor": "node scripts/migration-manager.js monitor"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^8.1.0",
+    "@google-cloud/storage": "^7.16.0",
+    "dotenv": "^17.2.0",
+    "ioredis": "^5.3.2",
+    "redis": "^5.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "gps",
+    "bigquery",
+    "redis",
+    "microservice",
+    "nodejs",
+    "scheduler",
+    "data-processing",
+    "scalable",
+    "modular"
+  ],
+  "author": "GPS Processing Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/gps-bigquery-microservice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/gps-bigquery-microservice/issues"
+  },
+  "homepage": "https://github.com/your-org/gps-bigquery-microservice#readme"
+}
