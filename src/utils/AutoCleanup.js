@@ -621,18 +621,33 @@ export class AutoCleanup {
     }, 60000);
 
     // Programar ejecución diaria (simplificado)
-    setInterval(() => {
+    this.cleanupInterval = setInterval(() => {
       this.runIntelligentCleanup().catch(error => {
         logger.error('❌ Error en limpieza programada:', error.message);
       });
     }, 24 * 60 * 60 * 1000); // 24 horas
 
     // Programar verificación de espacio cada hora
-    setInterval(() => {
+    this.diskCheckInterval = setInterval(() => {
       this.checkDiskSpace().catch(error => {
         logger.error('❌ Error verificando espacio en disco:', error.message);
       });
     }, 60 * 60 * 1000); // 1 hora
+  }
+
+  /**
+   * Detiene la limpieza programada
+   */
+  stopCleanup() {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
+    }
+    if (this.diskCheckInterval) {
+      clearInterval(this.diskCheckInterval);
+      this.diskCheckInterval = null;
+    }
+    logger.info('🛑 Limpieza automática detenida');
   }
 
   /**

@@ -602,11 +602,22 @@ export class CostMonitor {
     }, 5 * 60 * 1000);
 
     // Programar ejecución diaria (simplificado)
-    setInterval(() => {
+    this.optimizationInterval = setInterval(() => {
       this.optimizeCosts().catch(error => {
         logger.error('❌ Error en optimización programada:', error.message);
       });
     }, 24 * 60 * 60 * 1000); // 24 horas
+  }
+
+  /**
+   * Detiene la optimización programada
+   */
+  stopOptimization() {
+    if (this.optimizationInterval) {
+      clearInterval(this.optimizationInterval);
+      this.optimizationInterval = null;
+      logger.info('🛑 Optimización de costos detenida');
+    }
   }
 
   /**
