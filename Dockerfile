@@ -14,6 +14,9 @@ RUN npm ci --only=production && npm cache clean --force
 # Copiar código fuente
 COPY . .
 
+# Asegurar que service-account.json sea un archivo
+COPY service-account.json /app/service-account.json
+
 # Crear directorios necesarios
 RUN mkdir -p tmp logs data
 
