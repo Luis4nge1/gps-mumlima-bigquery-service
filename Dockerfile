@@ -14,9 +14,6 @@ RUN npm ci --only=production && npm cache clean --force
 # Copiar código fuente
 COPY . .
 
-# Copiar archivo de credenciales específicamente
-COPY service-account.json ./service-account.json
-
 # Crear directorios necesarios
 RUN mkdir -p tmp logs data
 

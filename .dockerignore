@@ -89,7 +89,7 @@ backups/
 *.bak
 
 # === ARCHIVOS DE GOOGLE CLOUD (credenciales locales) ===
-service-account*.json
+# service-account*.json  # Comentado para permitir service-account.json en Docker
 gcp-key*.json
 *.pem
 *.key
